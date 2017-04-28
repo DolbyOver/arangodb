@@ -26,6 +26,7 @@
 #define ARANGODB_REST_GENERAL_REQUEST_H 1
 
 #include "Basics/Common.h"
+#include "Utils/ExecContext.h"
 
 #include "Endpoint/ConnectionInfo.h"
 #include "Rest/CommonDefines.h"
@@ -82,6 +83,7 @@ class GeneralRequest {
         _connectionInfo(connectionInfo),
         _clientTaskId(0),
         _requestContext(nullptr),
+        _execContext(nullptr),
         _isRequestContextOwner(false),
         _type(RequestType::ILLEGAL),
         _contentType(ContentType::UNSET),
@@ -202,6 +204,8 @@ class GeneralRequest {
 
   // request context
   RequestContext* _requestContext;
+  std::shared_ptr<ExecContext> _execContext;
+
   bool _isRequestContextOwner;
   rest::AuthenticationMethod _authenticationMethod =
       rest::AuthenticationMethod::NONE;
