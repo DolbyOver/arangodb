@@ -114,6 +114,9 @@ class GeneralRequest {
   RequestContext* requestContext() const { return _requestContext; }
   void setRequestContext(RequestContext*, bool);
 
+  ExecContext* execContext() const { return _execContext; }
+  void setExecContext(ExecContext*);
+
   RequestType requestType() const { return _type; }
   void setRequestType(RequestType type) { _type = type; }
 
@@ -204,7 +207,7 @@ class GeneralRequest {
 
   // request context
   RequestContext* _requestContext;
-  std::shared_ptr<ExecContext> _execContext;
+  ExecContext* _execContext;
 
   bool _isRequestContextOwner;
   rest::AuthenticationMethod _authenticationMethod =
